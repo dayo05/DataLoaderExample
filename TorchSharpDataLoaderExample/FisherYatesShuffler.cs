@@ -59,7 +59,7 @@ public class FisherYatesShuffler : IEnumerable<long>
             indexs.Clear();
             for (var i = 0L; i < size; i++)
             {
-                var rndidx = GetRandomLong();
+                var rndidx = GetRandomLong(i);
                 if (rndidx == i)
                     indexs[i] = i;
                 else
@@ -79,11 +79,11 @@ public class FisherYatesShuffler : IEnumerable<long>
             /* Ignore */
         }
 
-        private long GetRandomLong()
+        private long GetRandomLong(long i)
         {
             unchecked
             {
-                return ((long) r.Next() << 32) + (uint) r.Next();
+                return (((long) r.Next() << 32) + (uint) r.Next()) % (i + 1);
             }
         }
     }
