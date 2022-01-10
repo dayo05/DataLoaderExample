@@ -6,6 +6,7 @@ using static TorchSharp.torch;
 using static TorchSharp.torch.nn;
 using static System.Linq.Enumerable;
 
+#if FRUITS
 using var trainDataset = new Fruits360("/home/dayo/datasets/fruits-360/", true, CUDA);
 using var testDataset = new Fruits360("/home/dayo/datasets/fruits-360/", false, CUDA);
 
@@ -64,3 +65,4 @@ foreach (var epoch in Range(1, 1000))
             $"\rTest set: Average loss {(testLoss / testDataset.Count):F9} | Accuracy {((double) correct / testDataset.Count):P2}");
     }
 }
+#endif
